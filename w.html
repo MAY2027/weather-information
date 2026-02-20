@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+<style>
+    body{
+        font-family: 'Segoe UI',  sans-serif;
+        background: linear-gradient(to right, #74ebd5, #acbce5);
+        text-align: center;
+        padding: 50px;
+        color: #333;
+    }
+    h1{
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+    input[type="text"] {
+        padding: 10px;
+        width: 250px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0 2px 5px rgba (0,0,0,1);
+    }
+    button{
+        padding: 10px 20px;
+        margin-left: 10px;
+        background-color: #0077ff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    button:hover{ background: color #0055ec;}
+    #result h2{
+        margin-bottom: 10px;
+    }
+    #result p {
+        font-size: 1.1em;
+        margin: 5px 0;
+    }
+    footer{
+        text-align: center;
+        margin-top: 350px;
+        font-size: 0.9em;
+        color: #555;
+    }
+    @media (max-width:600px) {
+        input[type="text"]{
+            width: 80%;
+        }
+        button {
+            margin-top: 10px;
+            width: 80%;
+        }
+    }
+
+
+</style>
+
+</head>
+<body>
+    
+    <h1>Weather Info</h1>
+    <input type="text" id="city" placeholder="Enter city name">
+    <button onclick="getWeather()">Check Weather</button>
+    <div id="result"></div>
+    <footer>Made 💗by MAY</footer>
+                   
+    
+    
+    <script>
+        const apiKey = "8cd1b53d3f0fdd5d5541aeaea48d6d7e"
+         function getWeather() {
+            const city = document.getElementById("city").value.trim();
+            if (city === "") {
+                alert("Please enter a city name.");
+                return;
+            }
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        
+            
+            fetch(url)
+            
+             .then(response => {
+                if (!response.ok){
+                    throw new Error ("City not found😿");
+                }
+                return response.json();
+             })
+             .then (data =>{
+                const weather = `
+                   <h2>${data.name}</h2>
+                   <p>${data.weather[0].main} - ${data.weather[0].description} </p>
+                   <p>☀️ Temperature: ${data.main.temp} ℃</p>
+                   <p>🌥️ Wind: ${data.wind.speed} m/s</p>
+                   <p>💧 Humidity: ${data.main.humidity} %</p>
+                   
+                `;
+                document.getElementById("result").innerHTML = weather;
+              })
+               .catch(error => {
+                document.getElementById("result").innerHTML = "City not found😿";
+                console.error("Error:", error);
+
+               });
+         }
+    </script>
+</body>
+</html>
