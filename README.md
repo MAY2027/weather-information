@@ -12,7 +12,7 @@ This app allows users to search for any city and view real-time weather informat
  🛠️ Technologies Used
 - HTML5
 - CSS3
-- JavaScript (ES6)
+- JavaScript 
 - OpenWeather API
 
 Created by 💜MAY💜
