@@ -3,6 +3,9 @@
 A simple and responsive weather application built with HTML, CSS, and JavaScript.
 This app allows users to search for any city and view real-time weather information using the OpenWeather API.
 
+[Link](https://i25021may.main.jp/weather/w.html)
+
+
  🚀 Features
 - Search weather by city name
 - Real-time temperature, humidity, and wind speed
